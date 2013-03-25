@@ -1,0 +1,34 @@
+to make it type in sequence:
+
+autoreconf
+automake --add-missing
+./configure
+make
+
+To configure use the settings.cfg file created on launch
+
+settings:
+
+#server hostname or ip
+server=
+
+#port
+port=
+
+#channel you want it to join
+channel=
+
+#nick of the bot
+nick=
+
+#if you want it to write all incoming messages to stdout
+logging=
+
+#if you want it to auth with quakenet
+quakeauth=
+
+#name to auth with
+quakeauthname=
+
+#password to auth with
+quakeauthpw=

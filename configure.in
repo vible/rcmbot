@@ -1,0 +1,26 @@
+dnl vibbot ./confix
+AC_INIT(src/rcmbot.c)
+
+AM_INIT_AUTOMAKE(rcmbot, 1.0)
+
+AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_SRCDIR([src/rcmbot.c])
+
+AC_PROG_CC
+AC_C_CONST
+
+dnl CHECK HEADERS
+AC_HEADER_STDC
+
+dnl CHECK FUNCS
+AC_FUNC_MALLOC
+AC_FUNC_VPRINTF
+
+dnl CHECK for libs using pkgconfig
+PKG_CHECK_MODULES(LIBCURL, libcurl >= 7.0)
+PKG_CHECK_MODULES(LIBXML, libxml-2.0 >= 2.4)
+
+AC_OUTPUT([
+	   src/Makefile
+	   Makefile
+	   ])
