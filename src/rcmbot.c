@@ -71,7 +71,7 @@ static struct settings* load_settings()
         set = set_default(set, "logging", "1");
         set = set_default(set, "quakeauth", "0");
         set = set_default(set, "quakeauthname", "RCMRadioBott");
-        set = set_default(set, "quakeauthpw", "");
+        set = set_default(set, "quakeauthpw", "none");
 
         if (nofile)
                 set_save_file(set, "settings.cfg");

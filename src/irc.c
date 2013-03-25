@@ -19,6 +19,7 @@
 #include "irc.h"
 
 #include "includes.h"
+#include "../config.h"
 
 #include <arpa/inet.h>
 #include <stdio.h>
@@ -69,13 +70,33 @@ static void cmd_ping(struct irc_struct *ircst, char *params[])
 
 static void cmd_privmsg(struct irc_struct *ircst, char *name, char *params[])
 {
+        char *n;
         if (!(name && params[0] && params[1]))
                 return;
+
+        name++;
+
+        n = strchr(name, '!');
+
+        if (!n)
+                return;
+
+        n[0] = '\0';
 
         if (strcmp(params[0], set_lookup(ircst->set, "channel")) == 0) {
                 ircst->songTreshold = time(NULL)+IRC_SONG_TRESHOLD;
 
                 irc_current_song(ircst);
+                return;
+        }
+
+        if (strcmp(params[0], set_lookup(ircst->set, "nick")) == 0 &&
+                        strcmp(params[1], ":\001VERSION\001") == 0) {
+              fprintf(ircst->socket, 
+                              "NOTICE %s :\001VERSION %s %s by vible\001\r\n",
+                              name, PACKAGE, VERSION);
+              fflush(ircst->socket);
+              return;
         }
 }
 
