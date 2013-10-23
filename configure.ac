@@ -1,7 +1,7 @@
 dnl vibbot ./confix
-AC_INIT(src/rcmbot.c)
-
-AM_INIT_AUTOMAKE(rcmbot, 1.0)
+AC_INIT([rcmbot], [1.0])
+AC_CONFIG_SRCDIR([src/rcmbot.c])
+AM_INIT_AUTOMAKE
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR([src/rcmbot.c])
